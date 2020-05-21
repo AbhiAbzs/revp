@@ -8,7 +8,7 @@ There are 3 components to revp: `server`, `client`, and `proxy connections`.
 
 All `proxy connection` requests are routed to the `client` through the `server`.
 
-What makes this a "reverse" proxy is the fact that the `client` initiates connection to the `server`, so there's no need to open ports or write firewall rules for the `client` whose network access you want to reach into -- you can basically run this on any network node whose firewall allows outbound traffic to your `server` port (essentially most firewall configurations found in the wild allow all outbound traffic).
+What makes this a "reverse" proxy is the fact that the `client` initiates connection to the `server`, so there's no need to open ports or write firewall rules for the `client` whose network access you want to reach into -- you can basically run this on any network node whose firewall allows outbound traffic to your `server` port (essentially all firewall configurations found in the wild allow all outbound traffic).
 
 `Proxy connections` are expected to make a first request of HTTP CONNECT and once connected they can exchange any data of any protocol with the destination address:port requested in the HTTP CONNECT. `Server` transparently routes all traffic from and to `client` and `client` routes all traffic from and to the remote destination.
 ### Options
