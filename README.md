@@ -2,6 +2,10 @@
 ### Build
 Run `make` and then use the resulting executable `revp.exe`.
 ### Instructions
+Run `server` with `./revp.exe -s -l 5000 -p 6000`, where 5000 is where you `client` will connect and 6000 is where `proxy connections` will be serviced.
+
+Run `client` with `./revp.exe -c -a 192.168.1.1 -z 5000`, where 192.168.1.1 is your `server` address and 5000 is your chosen `server` port that listens for a `client`.
+### Explanation
 There are 3 components to revp: `server`, `client`, and `proxy connections`.
 
 `Server` listens for `client` and starts listening for `proxy connections` once `client` connects.
