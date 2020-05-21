@@ -18,7 +18,6 @@ What makes this a "reverse" proxy is the fact that the `client` initiates connec
 
 `Proxy connections` are expected to make a first request of HTTP CONNECT and once connected they can exchange any data of any protocol with the destination address:port requested in the HTTP CONNECT. `Server` transparently routes all traffic from and to `client` and `client` routes all traffic from and to the remote destination.
 ### Options
-Options:
 ```Options:
   -h [ --help ]              Help screen
   -s [ --server ]            Starts revp in server mode
