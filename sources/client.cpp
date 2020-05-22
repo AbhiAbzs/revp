@@ -16,19 +16,19 @@ namespace asio = boost::asio;
 Client::Client(std::string server_address, short unsigned int server_port)
     : server_address(server_address), server_port(server_port) { }
 
-    void Client::run() {
-        asio::ip::tcp::socket *server_socket = connect(server_address, std::to_string(server_port));
-        asio::streambuf buffer;
-        std::string message;
-        for (;;) {
-            asio::read_until(*server_socket, buffer, '\n');
-            std::istream input_stream(&buffer);
-            std::getline(input_stream, message);
-            asio::ip::tcp::socket *proxy_socket = connect(server_address, message);
-            std::thread t1(handleProxyConnection, proxy_socket);
-            t1.detach();
-        }
+void Client::run() {
+    asio::ip::tcp::socket *server_socket = connect(server_address, std::to_string(server_port));
+    asio::streambuf buffer;
+    std::string message;
+    for (;;) {
+        asio::read_until(*server_socket, buffer, '\n');
+        std::istream input_stream(&buffer);
+        std::getline(input_stream, message);
+        asio::ip::tcp::socket *proxy_socket = connect(server_address, message);
+        std::thread t1(handleProxyConnection, proxy_socket);
+        t1.detach();
     }
+}
 
 asio::ip::tcp::socket *Client::connect(std::string address, std::string port) {
     try {

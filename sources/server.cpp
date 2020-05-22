@@ -14,19 +14,19 @@ namespace asio = boost::asio;
 Server::Server(short unsigned int client_port, short unsigned int proxy_port)
     : client_port(client_port), proxy_port(proxy_port) { }
 
-    void Server::run() {
-        asio::ip::tcp::socket *client_socket = listenForClient();
-        std::cout << "Listening for a proxy connections on port " << proxy_port << std::endl;
-        for (;;) {
-            asio::ip::tcp::socket *proxy_socket = listenForProxy();
-            std::cout << "New proxy connection initiated, creating a proxy-client socket" << std::endl;
-            asio::ip::tcp::socket *proxy_client_socket = createProxyClientSocket(client_socket);
-            std::thread t1(connectSockets, proxy_socket, proxy_client_socket);
-            std::thread t2(connectSockets, proxy_client_socket, proxy_socket);
-            t1.detach();
-            t2.detach();
-        }
+void Server::run() {
+    asio::ip::tcp::socket *client_socket = listenForClient();
+    std::cout << "Listening for a proxy connections on port " << proxy_port << std::endl;
+    for (;;) {
+        asio::ip::tcp::socket *proxy_socket = listenForProxy();
+        std::cout << "New proxy connection initiated, creating a proxy-client socket" << std::endl;
+        asio::ip::tcp::socket *proxy_client_socket = createProxyClientSocket(client_socket);
+        std::thread t1(connectSockets, proxy_socket, proxy_client_socket);
+        std::thread t2(connectSockets, proxy_client_socket, proxy_socket);
+        t1.detach();
+        t2.detach();
     }
+}
 
 asio::ip::tcp::socket *Server::listenForClient() {
     asio::io_service ios;
