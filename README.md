@@ -1,6 +1,7 @@
 # revp
 ### Build
 Run `make` and then use the resulting executable `revp.exe`.
+
 Note: revp also builds on Windows. Just create a new Visual Studio project and import the files.
 ### Instructions
 Run `server` with `./revp.exe -s -l 5000 -p 6000`, where 5000 is where your `client` will connect and 6000 is where `proxy connections` will be serviced.
