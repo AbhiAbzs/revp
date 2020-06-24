@@ -25,8 +25,7 @@ What makes this a "reverse" proxy is the fact that the `client` initiates connec
   -s [ --server ]            Starts revp in server mode
   -c [ --client ]            Starts revp in client mode
   -l [ --clientPort ] arg    [Server mode] Port that listens for client
-  -p [ --proxyPort ] arg     [Server mode] Port that listens for proxy 
-                             connections
+  -p [ --proxyPort ] arg     [Server mode] Port that listens for proxy connections
   -a [ --serverAddress ] arg [Client mode] Address of server
   -z [ --serverPort ] arg    [Client mode] Port of server
 ```
